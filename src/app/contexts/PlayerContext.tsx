@@ -1,3 +1,8 @@
 import { createContext } from 'react';
 
-export const PlayerContext: React.Context = createContext({});
+export type PlayerContextType = {
+  [index: string]: string[];
+};
+export const PlayerContext: React.Context<PlayerContextType> = createContext(
+  {}
+);
