@@ -12,8 +12,15 @@ export const defaultState: PlayerContextType = {
 export const defaultFirstPlayer: string = allColors[0];
 
 export const startFields = {
-  [allColors[0]]: 0,
-  [allColors[1]]: 10,
-  [allColors[2]]: 20,
-  [allColors[3]]: 30,
+  [allColors[0]]: 2,
+  [allColors[1]]: 12,
+  [allColors[2]]: 22,
+  [allColors[3]]: 32,
+};
+
+export const endFields = {
+  [allColors[0]]: 1,
+  [allColors[1]]: 11,
+  [allColors[2]]: 21,
+  [allColors[3]]: 31,
 };

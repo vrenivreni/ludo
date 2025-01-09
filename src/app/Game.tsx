@@ -9,6 +9,7 @@ import {
   allColors,
   defaultFirstPlayer,
   defaultState,
+  endFields,
   startFields,
 } from '@/app/consts';
 
@@ -44,8 +45,16 @@ export const Game = () => {
       if (dice) {
         if (current.startsWith(currentPlayer)) {
           newField = startFields[currentPlayer] + dice;
+        } else if (
+          parseInt(current) <= endFields[currentPlayer] &&
+          (parseInt(current) + dice) % 39 > endFields[currentPlayer]
+        ) {
+          newField =
+            'goal-' +
+            currentPlayer +
+            (endFields[currentPlayer] - (parseInt(current) + dice)).toString();
         } else {
-          newField = parseInt(current) + dice;
+          newField = (parseInt(current) + dice) % 39;
         }
         fields[fields.indexOf(current)] = newField.toString();
         setPlayers({
@@ -126,15 +135,15 @@ export const Game = () => {
         </button>
       </div>
       <div className='flex flex-row justify-evenly'>
+        <HomeArea color={Object.keys(players)[3]} />
         <HomeArea color={Object.keys(players)[0]} />
-        <HomeArea color={Object.keys(players)[1]} />
       </div>
       <div className='flex justify-center'>
         <FieldArea colors={Object.keys(players)} />
       </div>
       <div className='flex flex-row justify-evenly'>
-        <HomeArea color={Object.keys(players)[3]} />
         <HomeArea color={Object.keys(players)[2]} />
+        <HomeArea color={Object.keys(players)[1]} />
       </div>
     </PlayerContext.Provider>
   );
